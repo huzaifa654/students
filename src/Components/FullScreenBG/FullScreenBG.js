@@ -1,11 +1,12 @@
+/* eslint-disable prettier/prettier */
+import {StyleSheet, Text, View, ImageBackground} from 'react-native';
 import React from 'react';
-import {ImageBackground, StyleSheet} from 'react-native';
 
 export default function FullScreenBG({source, children, style, resizeMode}) {
   return (
     <ImageBackground
       source={source}
-      style={[styles.constiner, {...style}]}
+      style={[style ? {...style} : styles.constiner]}
       resizeMode={resizeMode ? resizeMode : 'cover'}>
       {children}
     </ImageBackground>

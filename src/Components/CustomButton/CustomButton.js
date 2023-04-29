@@ -1,12 +1,26 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
-import { Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { FontFamily, FontSizes } from '../../Constants/AppFonts';
+import {Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {FontFamily, FontSizes} from '../../Constants/AppFonts';
 import Colors from '../../Utilitis/Colors';
 import GlobalStyles from '../../Utilitis/GlobalStyles';
-import { verticalScale } from '../../Utilitis/ResponsiveSizes';
+import {verticalScale} from '../../Utilitis/ResponsiveSizes';
 
-
-const CustomButton = ({ onPress, text, bgColor, fgColor, width, marginTop, Icon, marginLeft, fontSize, height, marginBottom, borderColor, disabled }) => {
+const CustomButton = ({
+  onPress,
+  text,
+  bgColor,
+  fgColor,
+  width,
+  marginTop,
+  Icon,
+  marginLeft,
+  fontSize,
+  height,
+  marginBottom,
+  borderColor,
+  disabled,
+}) => {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -14,24 +28,26 @@ const CustomButton = ({ onPress, text, bgColor, fgColor, width, marginTop, Icon,
       style={[
         styles.container,
         GlobalStyles.Shadow2,
-        bgColor ? { backgroundColor: bgColor } : {},
-        width ? { width, } : {},
-        marginTop ? { marginTop } : {},
-        Icon ? { flexDirection: 'row', justifyContent: 'space-between' } : {},
-        marginLeft ? { marginLeft } : {},
-        height ? { height } : {},
-        marginBottom ? { marginBottom } : {},
-        borderColor ? { borderColor: borderColor, borderWidth: 1 } : {}
+        bgColor ? {backgroundColor: bgColor} : {},
+        width ? {width} : {},
+        marginTop ? {marginTop} : {},
+        Icon ? {flexDirection: 'row', justifyContent: 'space-between'} : {},
+        marginLeft ? {marginLeft} : {},
+        height ? {height} : {},
+        marginBottom ? {marginBottom} : {},
+        borderColor ? {borderColor: borderColor, borderWidth: 1} : {},
       ]}>
-      {Icon ?
-        <Image source={Icon} style={{ height: 30, width: 30, tintColor: '#fff' }} />
-        : null}
+      {Icon ? (
+        <Image
+          source={Icon}
+          style={{height: 30, width: 30, tintColor: '#fff'}}
+        />
+      ) : null}
       <Text
         style={[
           styles.text,
-          fgColor ? { color: fgColor } : {},
-          fontSize ? { fontSize } : { fontSize: FontSizes.LargeMedium }
-
+          fgColor ? {color: fgColor} : {},
+          fontSize ? {fontSize} : {fontSize: FontSizes.LargeMedium},
         ]}>
         {text}
       </Text>
@@ -47,15 +63,12 @@ const styles = StyleSheet.create({
     height: verticalScale(60),
     width: '55%',
     alignSelf: 'center',
-
   },
 
   text: {
     color: Colors.black,
-    fontFamily: FontFamily.Arsenal_Bold
+    fontFamily: FontFamily.Arsenal_Bold,
   },
-
-
 });
 
 export default CustomButton;
