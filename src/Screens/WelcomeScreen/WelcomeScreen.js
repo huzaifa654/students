@@ -33,7 +33,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
-    backgroundColor: 'blue',
+    // backgroundColor: '#d4c1ab',
+    // backgroundColor: 'transparent',\
+    backgroundColor: '#ecf3fe',
   },
   image: {
     width: '80%',

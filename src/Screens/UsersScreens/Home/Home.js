@@ -21,7 +21,7 @@ export default function Home() {
         marginTop={verticalScale(25)}
         width={'95%'}
       /> */}
-      <ScrollView style={{marginBottom: verticalScale(22)}}>
+      <ScrollView style={{}}>
         <StudentsData />
         <StudentsData />
         <StudentsData />
@@ -29,7 +29,7 @@ export default function Home() {
         <StudentsData />
         <StudentsData />
         <StudentsData />
-        <StudentsData />
+        <StudentsData marginBottom={true} />
       </ScrollView>
     </View>
   );

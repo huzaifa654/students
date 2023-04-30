@@ -11,9 +11,14 @@ import {studentImage} from '../../Constants/AppImages';
 import TextLabel from '../TextLabel/TextLable';
 import {FontFamily, FontSizes} from '../../Constants/AppFonts';
 
-export default function StudentsData() {
+export default function StudentsData({marginBottom}) {
   return (
-    <TouchableOpacity style={[styles.container, GlobalStyles.Shadow2]}>
+    <TouchableOpacity
+      style={[
+        styles.container,
+        GlobalStyles.Shadow2,
+        {marginBottom: marginBottom ? 45 : 0},
+      ]}>
       <View style={{flexDirection: 'row'}}>
         <Image
           source={studentImage}
