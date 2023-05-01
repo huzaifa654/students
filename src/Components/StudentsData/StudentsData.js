@@ -11,9 +11,10 @@ import {studentImage} from '../../Constants/AppImages';
 import TextLabel from '../TextLabel/TextLable';
 import {FontFamily, FontSizes} from '../../Constants/AppFonts';
 
-export default function StudentsData({marginBottom}) {
+export default function StudentsData({marginBottom, onPress}) {
   return (
     <TouchableOpacity
+      onPress={onPress}
       style={[
         styles.container,
         GlobalStyles.Shadow2,

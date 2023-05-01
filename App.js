@@ -11,6 +11,7 @@ import Colors from './src/Utilitis/Colors';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styles from './src/Components/Dropdown/style';
 import SplashScreen from './src/Screens/SplashScreen/SplashScreen';
+import Profile from './src/Screens/UsersScreens/ProfileScreens/Profile';
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,7 @@ export default function App() {
             initialRouteName={'WelcomeScreen'}>
             <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
             <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Profile" component={Profile} />
           </Stack.Navigator>
         </NavigationContainer>
       )}

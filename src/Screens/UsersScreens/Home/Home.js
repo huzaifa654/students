@@ -7,8 +7,10 @@ import {verticalScale} from '../../../Utilitis/ResponsiveSizes';
 import StudentsData from '../../../Components/StudentsData/StudentsData';
 import {ubitLogo} from '../../../Constants/AppImages';
 import {scale} from 'react-native-size-matters';
+import {useNavigation} from '@react-navigation/native';
 
 export default function Home() {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Image source={ubitLogo} resizeMode="contain" style={styles.img} />
@@ -22,7 +24,11 @@ export default function Home() {
         width={'95%'}
       /> */}
       <ScrollView style={{}}>
-        <StudentsData />
+        <StudentsData
+          onPress={() => {
+            navigation.navigate('Profile');
+          }}
+        />
         <StudentsData />
         <StudentsData />
         <StudentsData />
