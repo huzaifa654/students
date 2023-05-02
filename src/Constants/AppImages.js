@@ -6,8 +6,9 @@ const StarBackground = require('../Assets/KU.jpg');
 const SplashBackGround = require('../Assets/scaled.png');
 const KuLogo = require('../Assets/KULOGO.png');
 const backIcon = require('../Assets/back.png');
+const Sir = require('../Assets/Sir.jpg');
 
-// back.png
+// Sir.jpg
 export {
   // forwardIcon,
   ubitLogo,
@@ -16,4 +17,5 @@ export {
   SplashBackGround,
   KuLogo,
   backIcon,
+  Sir,
 };

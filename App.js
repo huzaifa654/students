@@ -9,7 +9,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Home} from './src/Screens/UsersScreens';
 import Colors from './src/Utilitis/Colors';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import styles from './src/Components/Dropdown/style';
 import SplashScreen from './src/Screens/SplashScreen/SplashScreen';
 import Profile from './src/Screens/UsersScreens/ProfileScreens/Profile';
 
