@@ -1,12 +1,14 @@
 import React from 'react';
-import {View, Pressable, TextInput, StyleSheet, Image} from 'react-native';
-import {moderateScale, verticalScale} from '../../Utilitis/ResponsiveSizes';
+import { View, Pressable, TextInput, StyleSheet, Image } from 'react-native';
+import { moderateScale, verticalScale } from '../../Utilitis/ResponsiveSizes';
 import Colors from '../../Utilitis/Colors';
-import {EyeIcon, EyeIconClose} from '../../Constants/AppImages';
-import {FontFamily} from '../../Constants/AppFonts';
+// import { EyeIcon, EyeIconClose } from '../../Constants/AppImages';
+import { FontFamily } from '../../Constants/AppFonts';
 import GlobalStyles from '../../Utilitis/GlobalStyles';
+import { EyeIcon, EyeIconClose } from '../../Constants/AppImages';
 
 const CustomInput = ({
+  maxLength,
   value,
   setValue,
   placeholder,
@@ -38,21 +40,21 @@ const CustomInput = ({
         styles.container,
         GlobalStyles.Shadow4,
         styles[`con_${type}`],
-        width ? {width} : null,
-        marginTop ? {marginTop} : null,
-        Bg ? {backgroundColor: Bg} : {backgroundColor: Colors.white},
-        borderRadius ? {borderRadius} : {},
-        borderWidth ? {borderWidth} : {},
-        borderColor ? {borderColor} : {alignSelf: 'center'},
-        alignSelf ? {alignSelf} : {},
-        height ? {height} : {},
+        width ? { width } : null,
+        marginTop ? { marginTop } : null,
+        Bg ? { backgroundColor: Bg } : { backgroundColor: Colors.white },
+        borderRadius ? { borderRadius } : {},
+        borderWidth ? { borderWidth } : {},
+        borderColor ? { borderColor } : { alignSelf: 'center' },
+        alignSelf ? { alignSelf } : {},
+        height ? { height } : {},
       ]}>
       {type == 'ICON' ? (
         <Image
           source={icon}
           style={[
             styles.img,
-            tintColor ? {tintColor} : {tintColor: Colors.gray},
+            tintColor ? { tintColor } : { tintColor: Colors.gray },
           ]}
           resizeMode={'contain'}
         />
@@ -63,9 +65,9 @@ const CustomInput = ({
         placeholder={placeholder}
         style={[
           styles.input,
-          fontFamily ? {fontFamily} : {fontFamily: FontFamily.Poppins_Regular},
-          color ? {color} : {color: Colors.black},
-          height ? {height} : {},
+          fontFamily ? { fontFamily } : { fontFamily: FontFamily.Poppins_Regular },
+          color ? { color } : { color: Colors.black },
+          height ? { height } : {},
         ]}
         secureTextEntry={secureTextEntry}
         keyboardType={keybord ? keybord : 'default'}
@@ -74,6 +76,7 @@ const CustomInput = ({
         }
         multiline={multiline}
         numberOfLines={numberOfLines}
+        maxLength={maxLength}
       />
       {secure == true ? (
         <Pressable onPress={() => SetsecureTextEntry(!secureTextEntry)}>
@@ -81,7 +84,7 @@ const CustomInput = ({
             source={secureTextEntry != true ? EyeIcon : EyeIconClose}
             style={[
               styles.img2,
-              tintColor ? {tintColor} : {tintColor: Colors.black},
+              tintColor ? { tintColor } : { tintColor: Colors.black },
             ]}
             resizeMode={'contain'}
           />

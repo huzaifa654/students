@@ -1,36 +1,30 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
-import {moderateScale} from 'react-native-size-matters';
-import {backIcon, studentImage} from '../../Constants/AppImages';
-import {FontFamily, FontSizes} from '../../Constants/AppFonts';
-import {useNavigation} from '@react-navigation/native';
+import { moderateScale, verticalScale } from 'react-native-size-matters';
+import { backIcon, semester, studentImage } from '../../Constants/AppImages';
+import { FontFamily, FontSizes } from '../../Constants/AppFonts';
+import { useNavigation } from '@react-navigation/native';
 
-export default function ProfileView({}) {
+export default function ProfileView({ name, seatNo, Semester }) {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={{marginTop: 12}}
-        onPress={() => {
-          navigation.goBack();
-        }}>
-        <Image source={backIcon} style={styles.img} />
-      </TouchableOpacity>
+
       <Image source={studentImage} style={styles.img2} />
 
-      <View style={{marginTop: 10, marginBottom: 10}}>
+      <View style={{ marginTop: 10, marginBottom: 10 }}>
         <Text style={styles.text}>
           Name:{'  '}
-          <Text>Baqar Raza</Text>
+          <Text>{name}</Text>
         </Text>
         <Text style={styles.text}>
-          Seat no: <Text>B-20102069</Text>
+          Seat no: <Text>{seatNo}</Text>
         </Text>
         <Text style={styles.text}>
           Semester:{'  '}
-          <Text>5th</Text>
+          <Text>{Semester == 1 && `${Semester}st` || Semester == 2 && `${Semester}nd` || Semester > 2 && `${Semester}th`}</Text>
         </Text>
       </View>
     </View>
@@ -56,6 +50,9 @@ const styles = StyleSheet.create({
     height: 120,
     alignSelf: 'center',
     borderRadius: 100,
+    tintColor: 'white',
+    marginTop: verticalScale(34)
+
   },
   text: {
     color: 'white',

@@ -21,7 +21,7 @@ export default function WelcomeScreen() {
         marginTop={580}
         text={'Get Started'}
         onPress={() => {
-          navigation.navigate('Home');
+          navigation.navigate('LoginScreen');
         }}
       />
     </FullScreenBG>

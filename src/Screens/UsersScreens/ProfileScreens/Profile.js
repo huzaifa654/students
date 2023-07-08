@@ -1,17 +1,24 @@
 /* eslint-disable prettier/prettier */
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import ProfileView from '../../../Components/ProfileView/ProfileView';
 import TextLabel from '../../../Components/TextLabel/TextLable';
-import {FontSizes} from '../../../Constants/AppFonts';
+import { FontSizes } from '../../../Constants/AppFonts';
 import GPAView from '../../../Components/GPAView/GPAView';
 import SemesterCoursesView from '../../../Components/SemesterCousesView/SemesterCoursesView';
+import { semester } from '../../../Constants/AppImages';
 
-export default function Profile({}) {
+export default function Profile({ route }) {
+  const { firstName: firstName,
+    LastName,
+    seatNo,
+    Semester,
+    SemesterGpa,
+    GPA } = route.params
   return (
     <View style={styles.container}>
-      <ScrollView style={{marginBottom: 22}}>
-        <ProfileView />
+      <ScrollView style={{ marginBottom: 22 }}>
+        <ProfileView name={`${firstName + LastName}`} seatNo={seatNo} Semester={Semester} GPA={GPA} SemesterGpa={SemesterGpa} />
 
         <View
           style={{
@@ -27,7 +34,7 @@ export default function Profile({}) {
               fontSize={FontSizes.LargeMedium}
               fontWeight={'bold'}
             />
-            <GPAView semesterGPA={3.84} />
+            <GPAView semesterGPA={SemesterGpa} />
           </View>
           <View>
             <TextLabel
@@ -37,7 +44,7 @@ export default function Profile({}) {
               fontSize={FontSizes.LargeMedium}
               fontWeight={'bold'}
             />
-            <GPAView overallGPA={3.42} />
+            <GPAView overallGPA={GPA} />
           </View>
         </View>
         <TextLabel
