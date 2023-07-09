@@ -9,6 +9,7 @@ import Colors from '../../Utilitis/Colors'
 import TextLabel from '../../Components/TextLabel/TextLable'
 import { FontFamily, FontSizes } from '../../Constants/AppFonts'
 import CustomButton from '../../Components/CustomButton/CustomButton'
+import CustomDropDown from '../../Components/CustomDropDown/CustomDropDown'
 
 export default function Signup() {
     const navigation = useNavigation();
@@ -25,7 +26,19 @@ export default function Signup() {
     const [password2, setPassword2] = useState('')
     const [textSecurity, SetTextSecurity] = useState(true);
     const [textSecurity2, SetTextSecurity2] = useState(true);
-    console.log(LastName)
+    const [value, setValue] = useState('');
+    const citiesdata = [
+        { label: 'None', value: '0' },
+
+        { label: 'MERN', value: '1' },
+        { label: 'Cloud Computing', value: '2' },
+        { label: 'Flutter', value: '3' },
+        { label: 'Web Development', value: '4' },
+
+
+
+    ];
+
     return (
         <ScrollView style={styles.container}>
             <Image source={KuLogo} resizeMode="contain" style={styles.img} />
@@ -101,6 +114,19 @@ export default function Signup() {
                 color={Colors.AppBlue1}
                 placeholderTextColor={Colors.AppBlue1}
             />
+            <CustomDropDown
+                defaultValue={'Skilled Courses'}
+                statusBarIsTranslucent={true}
+                alignSelf={'center'}
+                leftIcon={GPA}
+                width={'90%'}
+                border={true}
+                data={citiesdata}
+                setValue={setValue}
+                value={value}
+                placeholder={'Skilled Courses'}
+            />
+
             <CustomInput
                 placeholder="Email"
                 value={email}
@@ -142,7 +168,7 @@ export default function Signup() {
             {firstName != null && LastName != null && seatNo != null && Semester != null && SemesterGpa != null && GPA != null && email != null && password != null && password2 != null ?
                 <CustomButton
                     text="Signup"
-                    onPress={() => navigation.navigate("Profile", {
+                    onPress={() => navigation.replace("Profile", {
                         firstName: firstName,
                         LastName: LastName,
                         seatNo: seatNo,

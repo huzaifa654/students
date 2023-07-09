@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { EmailIcon, KuLogo, LockIcon } from '../../Constants/AppImages'
 import { scale, verticalScale } from 'react-native-size-matters'
 import TextLabel from '../../Components/TextLabel/TextLable'
@@ -10,8 +10,24 @@ import CustomInput from '../../Components/CustomInput/CustomInput'
 import Colors from '../../Utilitis/Colors'
 import CustomButton from '../../Components/CustomButton/CustomButton'
 import GlobalStyles from '../../Utilitis/GlobalStyles'
+import axios from 'axios'
 
 export default function Login() {
+    const performGetRequest = async () => {
+        try {
+            const response = await axios.get('http://192.168.0.136:3000/Students');
+            console.log('Response:', response.data);
+        } catch (error) {
+            console.error('Error==============:', error);
+        }
+    };
+
+
+    useEffect(() => {
+        performGetRequest()
+
+    }, [])
+
     const navigation = useNavigation()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
@@ -55,7 +71,7 @@ export default function Login() {
 
             <CustomButton
                 text="Login"
-                onPress={() => navigation.navigate('Profile')}
+                onPress={() => navigation.replace('Profile')}
                 bgColor={"#2596be"}
                 marginTop={30}
                 fgColor={"white"}

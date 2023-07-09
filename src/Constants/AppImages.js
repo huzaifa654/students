@@ -15,6 +15,7 @@ const EyeIconClose = require('../Assets/close.png');
 const UserIcon = require('../Assets/user.png');
 const GPA = require('../Assets/GPA.png');
 const semester = require('../Assets/semester.png');
+const ArrowDownIcon = require('../Assets/down.png');
 
 
 
@@ -25,6 +26,7 @@ const semester = require('../Assets/semester.png');
 
 // Sir.jpg
 export {
+  ArrowDownIcon,
   semester,
   GPA,
   UserIcon,
