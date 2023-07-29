@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { EmailIcon, KuLogo, LockIcon } from '../../Constants/AppImages'
 import { scale, verticalScale } from 'react-native-size-matters'
@@ -11,27 +11,68 @@ import Colors from '../../Utilitis/Colors'
 import CustomButton from '../../Components/CustomButton/CustomButton'
 import GlobalStyles from '../../Utilitis/GlobalStyles'
 import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUserdetails } from '../../../Store/Reducer/UserReducer'
+import { Url } from '../../Constants/AppText'
 
 export default function Login() {
-    const performGetRequest = async () => {
-        try {
-            const response = await axios.get('http://192.168.0.136:3000/Students');
-            console.log('Response:', response.data);
-        } catch (error) {
-            console.error('Error==============:', error);
-        }
-    };
 
 
-    useEffect(() => {
-        performGetRequest()
 
-    }, [])
 
+    const dispatch = useDispatch();
+    const {
+        userDetails
+    } = useSelector(state => state.UserDetails);
+    console.log("userDetails===", userDetails)
     const navigation = useNavigation()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
     const [textSecurity, SetTextSecurity] = useState(true);
+    const handleLogin = async () => {
+        const UserData = {
+
+            seat_no: email,
+            passcode: password,
+        }
+        console.log(UserData)
+        axios.post(`${Url?.BaseUrl}/login`, UserData)
+            .then(response => {
+
+                console.log('User login successfully:', response.data.message);
+                navigation.replace("Profile")
+
+            })
+
+            .catch(error => {
+                // console.error('Failed to login user:', error);
+                Alert.alert('Error', 'Failed to login user');
+            });
+    };
+
+    const GetUserDeatils = () => {
+        const UserData = {
+            seat_no: email,
+
+        }
+        console.log(UserData)
+        axios.post(`${Url?.BaseUrl}/userDetails`, UserData)
+            .then(response => {
+                console.log('Api hit successfully:', response?.data);
+                dispatch(
+                    setUserdetails(
+                        response?.data
+                    ),
+                );
+                // Alert.alert('Success', 'User registered successfully');
+
+            })
+            .catch(error => {
+                // console.error('Failed to hit api:', error);
+                // Alert.alert('Error', 'Failed to register user');
+            });
+    };
+
     return (
         <View style={styles.container}>
             <Image source={KuLogo} resizeMode="contain" style={styles.img} />
@@ -40,7 +81,7 @@ export default function Login() {
             <TextLabel label={'Please sign in to continue'} fontSize={FontSizes.LargeMedium} fontFamily={FontFamily.Arsenal_Bold} marginBottom={25} marginLeft={22} />
 
             <CustomInput
-                placeholder="Email"
+                placeholder="Seat-no"
                 value={email}
                 keybord={'email-address'}
                 setValue={setEmail}
@@ -48,6 +89,7 @@ export default function Login() {
                 icon={EmailIcon}
                 tintColor={Colors.AppBlue1}
                 width={"90%"}
+                maxLength={14}
 
                 color={Colors.AppBlue1}
                 placeholderTextColor={Colors.AppBlue1}
@@ -71,7 +113,8 @@ export default function Login() {
 
             <CustomButton
                 text="Login"
-                onPress={() => navigation.replace('Profile')}
+                // onPress={() => navigation.replace('Profile')}
+                onPress={() => { handleLogin(), GetUserDeatils() }}
                 bgColor={"#2596be"}
                 marginTop={30}
                 fgColor={"white"}

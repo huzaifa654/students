@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable prettier/prettier */
-import {Image, StyleSheet, View} from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 
 import {
   KuLogo,
@@ -12,10 +12,26 @@ import {
 import FullScreenBG from '../../Components/FullScreenBG/FullScreenBG';
 import CustomButton from '../../Components/CustomButton/CustomButton';
 import TextLabel from '../../Components/TextLabel/TextLable';
-import {FontSizes} from '../../Constants/AppFonts';
-import {scale, verticalScale} from 'react-native-size-matters';
+import { FontSizes } from '../../Constants/AppFonts';
+import { scale, verticalScale } from 'react-native-size-matters';
+import { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 
 export default function SplashScreen() {
+  const [SplashShow, SetSplashShow] = useState(true);
+
+  const {
+    userDetails
+  } = useSelector(state => state.UserDetails);
+  console.log(JSON.stringify(userDetails) == "{}")
+  const navigation = useNavigation()
+  useEffect(() => {
+    setTimeout(() => {
+      JSON.stringify(userDetails) == "{}" ? navigation.replace("LoginScreen") : navigation.replace("Profile")
+
+    }, 1500);
+  }, []);
   return (
     <View style={styles.container}>
       <TextLabel
@@ -25,7 +41,7 @@ export default function SplashScreen() {
         fontSize={FontSizes.ExtraLarge}
         marginTop={verticalScale(55)}
         width={'97%'}
-        // marginHorizental={scale(5)}
+      // marginHorizental={scale(5)}
       />
       <Image
         source={KuLogo}
@@ -39,7 +55,7 @@ export default function SplashScreen() {
       />
       <Image
         source={SplashBackGround}
-        style={{width: '100%', height: 420}}
+        style={{ width: '100%', height: 420 }}
         resizeMode="contain"
       />
     </View>

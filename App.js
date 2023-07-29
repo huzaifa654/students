@@ -13,6 +13,11 @@ import SplashScreen from './src/Screens/SplashScreen/SplashScreen';
 import Profile from './src/Screens/UsersScreens/ProfileScreens/Profile';
 import Login from './src/Screens/Login/Login';
 import Signup from './src/Screens/Signup/Signup';
+import { Provider } from 'react-redux';
+import { store } from './Store/Store';
+import SemesterDetails from './src/Screens/SemesterDetai/SemesterDetails';
+import Assignment from './src/Screens/AssignmentsDetail/Assignment';
+import SkillDeatil from './src/Screens/Skills/SkillDeatil';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,10 +30,11 @@ export default function App() {
   }, []);
 
   return (
+
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.AppWhite }}>
-      {SplashShow ? (
-        <SplashScreen />
-      ) : (
+
+
+      <Provider store={store}>
         <NavigationContainer>
           <StatusBar
             backgroundColor={'transparent'}
@@ -37,7 +43,9 @@ export default function App() {
 
           <Stack.Navigator
             screenOptions={{ headerShown: false }}
-            initialRouteName={'WelcomeScreen'}>
+            initialRouteName={'SplashScreen'}>
+            <Stack.Screen name="SplashScreen" component={SplashScreen} />
+
             <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
             <Stack.Screen name="LoginScreen" component={Login} />
             <Stack.Screen name="Signup" component={Signup} />
@@ -45,9 +53,16 @@ export default function App() {
 
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Profile" component={Profile} />
+            <Stack.Screen name="Semester" component={SemesterDetails} />
+            <Stack.Screen name="Assignment" component={Assignment} />
+            <Stack.Screen name="Skill" component={SkillDeatil} />
+
+
+
           </Stack.Navigator>
         </NavigationContainer>
-      )}
+      </Provider>
+
     </SafeAreaView>
   );
 }

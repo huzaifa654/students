@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import { Alert, Image, ScrollView, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { EmailIcon, GPA, KuLogo, LockIcon, UserIcon, semester } from '../../Constants/AppImages'
 import { scale, verticalScale } from 'react-native-size-matters'
 import CustomInput from '../../Components/CustomInput/CustomInput'
@@ -10,6 +10,10 @@ import TextLabel from '../../Components/TextLabel/TextLable'
 import { FontFamily, FontSizes } from '../../Constants/AppFonts'
 import CustomButton from '../../Components/CustomButton/CustomButton'
 import CustomDropDown from '../../Components/CustomDropDown/CustomDropDown'
+import axios from 'axios'
+import { Url } from '../../Constants/AppText'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUserdetails } from '../../../Store/Reducer/UserReducer'
 
 export default function Signup() {
     const navigation = useNavigation();
@@ -27,19 +31,92 @@ export default function Signup() {
     const [textSecurity, SetTextSecurity] = useState(true);
     const [textSecurity2, SetTextSecurity2] = useState(true);
     const [value, setValue] = useState('');
-    const citiesdata = [
-        { label: 'None', value: '0' },
+    const [userDetials, setUserDetials] = useState([]);
+    const dispatch = useDispatch();
+    const {
+        userDetails
+    } = useSelector(state => state.UserDetails);
 
-        { label: 'MERN', value: '1' },
-        { label: 'Cloud Computing', value: '2' },
-        { label: 'Flutter', value: '3' },
-        { label: 'Web Development', value: '4' },
+    const citiesdata = [
+
+        { label: 'MERN', value: 'MERN' },
+        { label: 'Cloud Computing', value: 'Cloud Computing' },
+        { label: 'Flutter', value: 'Flutter' },
+        { label: 'Web Development', value: 'Web Development' },
 
 
 
     ];
 
+
+    const handleSignup = () => {
+        const UserData = {
+            first_name: firstName,
+            last_name: LastName,
+            seat_no: seatNo,
+            semester_no: Semester,
+            semester_gpa: SemesterGpa,
+            cgpa: Gpa,
+            email: email,
+            passcode: password,
+        }
+        console.log(UserData)
+        axios.post(`${Url?.BaseUrl}/signup`, UserData)
+            .then(response => {
+                console.log('User registered successfully:', response.data.message);
+                Alert.alert('Success', 'User registered successfully', [
+
+                    { text: 'OK', onPress: () => navigation.goBack() },
+                ]);
+
+            })
+            .catch(error => {
+                // console.error('Failed to register user:', error);
+                Alert.alert('Error', 'Failed to register user');
+            });
+    };
+    const handleSkillCourses = () => {
+        const UserData = {
+            seat_no: seatNo,
+            c_name: value,
+
+        }
+        console.log(UserData)
+        axios.post(`${Url?.BaseUrl}/Skills`, UserData)
+            .then(response => {
+                console.log('Api hit successfully:', response.data.message);
+                // Alert.alert('Success', 'User registered successfully');
+            })
+            .catch(error => {
+                // console.error('Failed to hit api skilss:', error);
+                // Alert.alert('Error', 'Failed to register user');
+            });
+    };
+
+    const GetUserDeatils = () => {
+        const UserData = {
+            seat_no: seatNo,
+
+        }
+        console.log(UserData)
+        axios.post(`${Url?.BaseUrl}/userDetails`, UserData)
+            .then(response => {
+                console.log('Api hit successfully user:', response?.data);
+                // Alert.alert('Success', 'User registered successfully');
+                setUserDetials(response?.data)
+            })
+            .catch(error => {
+                // console.error('Failed to hit api user:', error);
+                // Alert.alert('Error', 'Failed to register user');
+            });
+    };
+
+    useEffect(() => {
+        GetUserDeatils()
+    }, [])
+
     return (
+
         <ScrollView style={styles.container}>
             <Image source={KuLogo} resizeMode="contain" style={styles.img} />
             <TextLabel label={'Welcome!'} fontSize={FontSizes.Large} fontFamily={FontFamily.Arsenal_Bold} marginTop={25} marginLeft={22} />
@@ -71,7 +148,10 @@ export default function Signup() {
                 setValue={setSeatNo}
                 type={'ICON'}
                 width={'90%'}
+                maxLength={10}
+
                 icon={UserIcon}
+
                 color={Colors.AppBlue1}
                 placeholderTextColor={Colors.AppBlue1}
             />
@@ -165,35 +245,17 @@ export default function Signup() {
                 SetsecureTextEntry={SetTextSecurity2}
             />
 
-            {firstName != null && LastName != null && seatNo != null && Semester != null && SemesterGpa != null && GPA != null && email != null && password != null && password2 != null ?
-                <CustomButton
-                    text="Signup"
-                    onPress={() => navigation.replace("Profile", {
-                        firstName: firstName,
-                        LastName: LastName,
-                        seatNo: seatNo,
-                        Semester: Semester,
-                        SemesterGpa: SemesterGpa,
-                        GPA: Gpa,
+
+            <CustomButton
+                text="Signup"
+                onPress={() => { handleSignup(); handleSkillCourses() }}
+                bgColor={"#2596be"}
+                marginTop={30}
+                marginBottom={34}
+                fgColor={"white"}
+            />
 
 
-                    })}
-                    bgColor={"#2596be"}
-                    marginTop={30}
-                    marginBottom={34}
-                    fgColor={"white"}
-                />
-                :
-                <CustomButton
-                    text="Signup"
-
-                    bgColor={"gray"}
-                    marginTop={30}
-                    marginBottom={34}
-                    fgColor={"white"}
-                />
-
-            }
         </ScrollView>
     )
 }

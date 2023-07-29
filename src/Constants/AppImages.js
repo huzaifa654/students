@@ -6,9 +6,12 @@ const StarBackground = require('../Assets/KU.jpg');
 const SplashBackGround = require('../Assets/scaled.png');
 const KuLogo = require('../Assets/KULOGO.png');
 const backIcon = require('../Assets/back.png');
-const Sir = require('../Assets/Sir.jpg');
+const Sir = require('../Assets/teachers.jpg');
 const EmailIcon = require('../Assets/email.png');
 const LockIcon = require('../Assets/lock.png');
+const Arrow = require('../Assets/arrow.png');
+const back = require('../Assets/back.png');
+
 
 const EyeIcon = require('../Assets/eye.png');
 const EyeIconClose = require('../Assets/close.png');
@@ -26,6 +29,7 @@ const ArrowDownIcon = require('../Assets/down.png');
 
 // Sir.jpg
 export {
+  back,
   ArrowDownIcon,
   semester,
   GPA,
@@ -40,5 +44,6 @@ export {
   Sir,
   EmailIcon,
   LockIcon,
-  EyeIcon
+  EyeIcon,
+  Arrow
 };
