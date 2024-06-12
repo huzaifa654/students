@@ -28,6 +28,7 @@ export default function Signup() {
     const [textSecurity2, SetTextSecurity2] = useState(true);
     const [value, setValue] = useState('');
     const [load, setLoad] = useState(false)
+    const [message, setMessage] = useState()
     const dispatch = useDispatch();
     const {
         userDetails
@@ -61,17 +62,11 @@ export default function Signup() {
         console.log(UserData)
         axios.post(`${Url?.BaseUrl}/register`, UserData)
             .then(response => {
-
                 setLoad(false)
                 dispatch(setUserdetails(response?.data))
+                setMessage(response.data.message)
                 console.log('User registered successfully:', response.data.message);
-                Alert.alert('Success', response.data.message, [
-
-                    { text: 'OK', onPress: () => navigation.goBack() },
-                ]);
-
-
-
+                setValue(true)
             })
             .catch(error => {
                 console.log(error)
@@ -337,7 +332,7 @@ export default function Signup() {
                 />
 
                 <CustomModal setValue={setValue} value={value}>
-                    <SuccessModal />
+                    <SuccessModal setvalue={() => { setValue(false) }} text={message} />
                 </CustomModal>
             </ScrollView>
             {load && <Loader />}
