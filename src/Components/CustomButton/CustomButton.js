@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
-    height: verticalScale(60),
-    width: '55%',
+    height: verticalScale(55),
+    width: '50%',
     alignSelf: 'center',
   },
 

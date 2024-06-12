@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     selectedTextStyle: {
         fontSize: scale(12),
         fontFamily: 'Montserrat-Bold',
-        color: Colors.AppBlue1,
+        color: Colors.black,
         fontFamily: FontFamily.Poppins_Regular,
     },
     iconStyle: {

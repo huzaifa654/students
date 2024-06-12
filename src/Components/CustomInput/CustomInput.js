@@ -6,6 +6,7 @@ import Colors from '../../Utilitis/Colors';
 import { FontFamily } from '../../Constants/AppFonts';
 import GlobalStyles from '../../Utilitis/GlobalStyles';
 import { EyeIcon, EyeIconClose } from '../../Constants/AppImages';
+import { useController } from 'react-hook-form';
 
 const CustomInput = ({
   maxLength,
@@ -28,12 +29,22 @@ const CustomInput = ({
   placeholderTextColor,
   tintColor,
   fontFamily,
-  iconType,
+  editable,
   borderWidth,
   borderColor,
   color,
   height,
+  name,
+  control,
+  rules
 }) => {
+
+  const { field } = useController({
+    control: control,
+    defaultValue: '',
+    name: name,
+    rules: rules,
+  });
   return (
     <View
       style={[
@@ -60,8 +71,9 @@ const CustomInput = ({
         />
       ) : null}
       <TextInput
-        value={value}
-        onChangeText={setValue}
+        editable={editable}
+        value={field?.value}
+        onChangeText={field?.onChange}
         placeholder={placeholder}
         style={[
           styles.input,
@@ -106,6 +118,7 @@ const styles = StyleSheet.create({
   input: {
     width: '90%',
     color: '#000',
+  
   },
   con_ICON: {
     flexDirection: 'row',

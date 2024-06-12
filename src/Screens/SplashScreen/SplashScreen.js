@@ -55,7 +55,7 @@ export default function SplashScreen() {
       />
       <Image
         source={SplashBackGround}
-        style={{ width: '100%', height: 420 }}
+        style={{ width: '100%', height: verticalScale(420) }}
         resizeMode="contain"
       />
     </View>
