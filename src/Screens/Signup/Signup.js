@@ -17,6 +17,8 @@ import { setUserdetails } from '../../../Store/Reducer/UserReducer'
 import { Controller, useForm } from 'react-hook-form'
 import ErrorMessage from '../../Components/ErrorMessage/ErrorMessage'
 import Loader from '../../Components/Loader/Loader'
+import CustomModal from '../../Components/Modals/CustomModal'
+import SuccessModal from '../../Components/SuccessModal/SuccessModal'
 
 export default function Signup() {
     const navigation = useNavigation();
@@ -63,7 +65,7 @@ export default function Signup() {
                 setLoad(false)
                 dispatch(setUserdetails(response?.data))
                 console.log('User registered successfully:', response.data.message);
-                Alert.alert('Success',  response.data.message, [
+                Alert.alert('Success', response.data.message, [
 
                     { text: 'OK', onPress: () => navigation.goBack() },
                 ]);
@@ -80,27 +82,9 @@ export default function Signup() {
     };
 
 
-    // const GetUserDeatils = () => {
-    //     const UserData = {
-    //         seat_no: seatNo,
 
-    //     }
-    //     console.log(UserData)
-    //     axios.post(`${Url?.BaseUrl}/userDetails`, UserData)
-    //         .then(response => {
-    //             console.log('Api hit successfully user:', response?.data);
-    //             // Alert.alert('Success', 'User registered successfully');
-    //             setUserDetials(response?.data)
-    //         })
-    //         .catch(error => {
-    //             // console.error('Failed to hit api user:', error);
-    //             // Alert.alert('Error', 'Failed to register user');
-    //         });
-    // };
 
-    useEffect(() => {
-        // GetUserDeatils()
-    }, [])
+
 
 
     const {
@@ -352,7 +336,9 @@ export default function Signup() {
                     fgColor={"white"}
                 />
 
-
+                <CustomModal setValue={setValue} value={value}>
+                    <SuccessModal />
+                </CustomModal>
             </ScrollView>
             {load && <Loader />}
 
