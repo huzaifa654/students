@@ -45,14 +45,13 @@ export default function App() {
             screenOptions={{ headerShown: false }}
             initialRouteName={'SplashScreen'}>
             <Stack.Screen name="SplashScreen" component={SplashScreen} />
-
             <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-            <Stack.Screen name="LoginScreen" component={Login} />
+            <Stack.Screen name="LoginScreen" component={Profile} />
             <Stack.Screen name="Signup" component={Signup} />
 
 
-            <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="Profile" component={Profile} />
+            {/* <Stack.Screen name="Home" component={Home} /> */}
+            {/* <Stack.Screen name="Profile" component={Profile} /> */}
             <Stack.Screen name="Semester" component={SemesterDetails} />
             <Stack.Screen name="Assignment" component={Assignment} />
             <Stack.Screen name="Skill" component={SkillDeatil} />

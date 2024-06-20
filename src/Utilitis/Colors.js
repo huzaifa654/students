@@ -26,4 +26,6 @@ export default Colors = {
   whiteOpacity70: 'rgba(255, 255, 255, 0.7)',
   whiteOpacity80: 'rgba(255, 255, 255, 0.8)',
   whiteOpacity20: 'rgba(255,255,255,0.2)',
+  Gray: "#D3D3D3",
+  Blue: "#55bbef",
 };

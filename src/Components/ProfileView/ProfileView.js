@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, StyleSheet, Text, Image, View } from 'react-native';
 import React from 'react';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import { backIcon, semester, studentImage } from '../../Constants/AppImages';
@@ -8,6 +8,8 @@ import { FontFamily, FontSizes } from '../../Constants/AppFonts';
 import { useNavigation } from '@react-navigation/native';
 import Lottie from 'lottie-react-native';
 import { setUserdetails } from '../../../Store/Reducer/UserReducer';
+import TextLabel from '../TextLabel/TextLable';
+import Colors from '../../Utilitis/Colors';
 
 export default function ProfileView({ name, seatNo, Semester }) {
   const navigation = useNavigation();
@@ -22,77 +24,43 @@ export default function ProfileView({ name, seatNo, Semester }) {
     ]);
   }
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={() => { ConfirmLogout(); }}>
-        <Lottie style={styles.logout}
-          source={require('../../Animation/logout.json')}
-          autoPlay
-          speed={0.5}
-          resizeMode='contain'
-          loop={true} />
-      </TouchableOpacity>
-      <Lottie style={styles.img2}
-        source={require('../../Animation/Student.json')}
-        autoPlay
-        speed={2}
-        resizeMode='contain'
-        loop={true} />
-
-      <View style={{ marginTop: 10, marginBottom: 10 }}>
-        <Text style={styles.text}>
-          Name:{'  '}
-          <Text>{name}</Text>
-        </Text>
-        <Text style={styles.text}>
-          Seat no: <Text>{seatNo}</Text>
-        </Text>
-        <Text style={styles.text}>
-          Semester:{'  '}
-          <Text>{Semester == 1 && `${Semester}st` || Semester == 2 && `${Semester}nd` || Semester > 2 && `${Semester}th`}</Text>
-        </Text>
+    <View style={styles?.row}>
+        <View style={styles?.imageContainer}>
+          <Image source={{ uri: "https://img.freepik.com/premium-photo/young-girl-student-smiling-against-university_101969-611.jpg" }} resizeMode='contain' style={styles?.image} />
+        </View>
+        <View style={{alignSelf:"center"}}>
+          <TextLabel label={"Muhammad Huzaifa"}  fontFamily={FontFamily?.Arsenal_Bold} fontWeight={"bold"}  marginLeft={scale(12)} />
+          <View style={{ flexDirection: "row" }}>
+            <TextLabel label={"Student ID:"} fontFamily={FontFamily?.Arsenal_Bold} fontWeight={"bold"}  marginLeft={scale(12)} />
+            <TextLabel label={"B-20102086"} fontFamily={FontFamily?.Arsenal_Bold} fontWeight={"bold"}  color={Colors?.Blue}  />
+          </View>
+          <View style={{ flexDirection: "row" }}>
+            <TextLabel label={"BSCS-"} fontFamily={FontFamily?.Arsenal_Bold} fontWeight={"bold"}  marginLeft={scale(12)} />
+            <TextLabel label={"2nd Year"} fontFamily={FontFamily?.Arsenal_Bold} fontWeight={"bold"}  color={Colors?.Blue}  />
+          </View>
+        </View>
       </View>
-    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-    backgroundColor: '#24354f',
-    padding: moderateScale(10),
-    borderBottomLeftRadius: 55,
-    borderBottomRightRadius: 55,
-    marginBottom: 12
-  },
-  img: {
-    width: 23,
-    height: 23,
-    tintColor: 'white',
-    marginLeft: 12,
-  },
-  img2: {
-    width: scale(140),
-    height: scale(140),
-    alignSelf: 'center',
-    borderRadius: 100,
-    tintColor: 'white',
-    marginTop: verticalScale(14)
+  imageContainer: {
+    width: scale(120),
+    height: scale(120),
+    marginTop: verticalScale(25)
 
   },
-  text: {
-    color: 'white',
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontFamily: FontFamily.Arsenal_Bold,
-    fontSize: FontSizes.Medium,
-    marginTop: 5,
-  },
-  logout: {
-    width: scale(34),
-    height: verticalScale(34),
-    position: "absolute",
-    top: 10,
-    right: 5
+  image: {
+    width: "100%",
+    height: "100%",
+    borderRadius: 150,
+    aspectRatio: 1 / 1,
 
-  }
+  },
+  row: {
+    flexDirection: "row",
+    marginTop: verticalScale(20),
+    marginLeft: scale(12)
+
+  },
 });

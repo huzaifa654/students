@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
-import {FontFamily, FontSizes} from '../../Constants/AppFonts';
+import { Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { FontFamily, FontSizes } from '../../Constants/AppFonts';
 import Colors from '../../Utilitis/Colors';
 import GlobalStyles from '../../Utilitis/GlobalStyles';
-import {verticalScale} from '../../Utilitis/ResponsiveSizes';
+import { verticalScale } from '../../Utilitis/ResponsiveSizes';
 
 const CustomButton = ({
   onPress,
@@ -20,6 +20,7 @@ const CustomButton = ({
   marginBottom,
   borderColor,
   disabled,
+  fontWeight
 }) => {
   return (
     <TouchableOpacity
@@ -28,26 +29,27 @@ const CustomButton = ({
       style={[
         styles.container,
         GlobalStyles.Shadow2,
-        bgColor ? {backgroundColor: bgColor} : {},
-        width ? {width} : {},
-        marginTop ? {marginTop} : {},
-        Icon ? {flexDirection: 'row', justifyContent: 'space-between'} : {},
-        marginLeft ? {marginLeft} : {},
-        height ? {height} : {},
-        marginBottom ? {marginBottom} : {},
-        borderColor ? {borderColor: borderColor, borderWidth: 1} : {},
+        bgColor ? { backgroundColor: bgColor } : {},
+        width ? { width } : {},
+        marginTop ? { marginTop } : {},
+        Icon ? { flexDirection: 'row', justifyContent: 'space-between' } : {},
+        marginLeft ? { marginLeft } : {},
+        height ? { height } : {},
+        marginBottom ? { marginBottom } : {},
+        borderColor ? { borderColor: borderColor, borderWidth: 1 } : {},
       ]}>
       {Icon ? (
         <Image
           source={Icon}
-          style={{height: 30, width: 30, tintColor: '#fff'}}
+          style={{ height: 30, width: 30, tintColor: '#fff' }}
         />
       ) : null}
       <Text
         style={[
           styles.text,
-          fgColor ? {color: fgColor} : {},
-          fontSize ? {fontSize} : {fontSize: FontSizes.LargeMedium},
+          fgColor ? { color: fgColor } : {},
+          fontSize ? { fontSize } : { fontSize: FontSizes.LargeMedium },
+          fontWeight ? { fontWeight: fontWeight } : {},
         ]}>
         {text}
       </Text>
