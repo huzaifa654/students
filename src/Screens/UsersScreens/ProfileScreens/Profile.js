@@ -169,11 +169,19 @@ import Loader from '../../../Components/Loader/Loader'
 export default function Profile() {
   const [courses, setCourses] = useState([])
   const [load, setLoad] = useState(false)
+  const COURSES = [
+    courses[0]?.Course1,
+    courses[0]?.Course2,
+    courses[0]?.Course3,
+    courses[0]?.Course4,
+    courses[0]?.Course5,
+    courses[0]?.Course6,
 
+  ]
   const { userDetails } = useSelector(state => state.UserDetails);
   const userInfo = userDetails?.UserResponse[0]
   const Focus = useIsFocused()
-  console.log("Courses", courses)
+  console.log("Courses--------------------", courses[0]?.Course1)
   const GetSemCourses = () => {
     setLoad(true)
     const UserData = {
@@ -185,7 +193,7 @@ export default function Profile() {
       .then(response => {
         setLoad(false)
 
-        console.log('setCourses========>>>>>>', JSON.stringify(response?.data));
+        console.log('setCourses========>>>>>>', JSON.stringify(response?.data)?.length);
         setCourses(response?.data?.data)
 
       })
@@ -196,9 +204,9 @@ export default function Profile() {
       });
   };
   const renderItem = (item) => {
-    console.log("item---", JSON.stringify(item))
+    console.log("item---", JSON.stringify(item?.item))
     return (
-      <SemesterCoucesContainer />
+      <SemesterCoucesContainer item={item?.item} />
 
     )
   }
@@ -212,9 +220,10 @@ export default function Profile() {
       <SemesterConatiner semGPA={userInfo?.semesterGPA} CGPA={userInfo?.overAllGPA} />
       <TextLabel label={"Semester Courses"} fontWeight={"700"} marginLeft={scale(15)} marginTop={verticalScale(15)} />
       <FlatList
-        data={courses}
+        data={COURSES}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
+        
       />
 
       {load && <Loader />}
