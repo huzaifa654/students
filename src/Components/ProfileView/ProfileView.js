@@ -11,7 +11,7 @@ import { setUserdetails } from '../../../Store/Reducer/UserReducer';
 import TextLabel from '../TextLabel/TextLable';
 import Colors from '../../Utilitis/Colors';
 
-export default function ProfileView({ name, seatNo, Semester }) {
+export default function ProfileView({ name, id, Semester }) {
   const navigation = useNavigation();
   const ConfirmLogout = () => {
     Alert.alert('', 'Are you sure you want to logout', [
@@ -25,21 +25,21 @@ export default function ProfileView({ name, seatNo, Semester }) {
   }
   return (
     <View style={styles?.row}>
-        <View style={styles?.imageContainer}>
-          <Image source={{ uri: "https://img.freepik.com/premium-photo/young-girl-student-smiling-against-university_101969-611.jpg" }} resizeMode='contain' style={styles?.image} />
+      <View style={styles?.imageContainer}>
+        <Image source={{ uri: "https://img.freepik.com/premium-photo/young-girl-student-smiling-against-university_101969-611.jpg" }} resizeMode='contain' style={styles?.image} />
+      </View>
+      <View style={{ alignSelf: "center" }}>
+        <TextLabel label={name} fontFamily={FontFamily?.Arsenal_Bold} fontWeight={"bold"} marginLeft={scale(12)} />
+        <View style={{ flexDirection: "row" }}>
+          <TextLabel label={"Student ID:"} fontFamily={FontFamily?.Arsenal_Bold} fontWeight={"bold"} marginLeft={scale(12)} />
+          <TextLabel label={id} fontFamily={FontFamily?.Arsenal_Bold} fontWeight={"bold"} color={Colors?.Blue} />
         </View>
-        <View style={{alignSelf:"center"}}>
-          <TextLabel label={"Muhammad Huzaifa"}  fontFamily={FontFamily?.Arsenal_Bold} fontWeight={"bold"}  marginLeft={scale(12)} />
-          <View style={{ flexDirection: "row" }}>
-            <TextLabel label={"Student ID:"} fontFamily={FontFamily?.Arsenal_Bold} fontWeight={"bold"}  marginLeft={scale(12)} />
-            <TextLabel label={"B-20102086"} fontFamily={FontFamily?.Arsenal_Bold} fontWeight={"bold"}  color={Colors?.Blue}  />
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <TextLabel label={"BSCS-"} fontFamily={FontFamily?.Arsenal_Bold} fontWeight={"bold"}  marginLeft={scale(12)} />
-            <TextLabel label={"2nd Year"} fontFamily={FontFamily?.Arsenal_Bold} fontWeight={"bold"}  color={Colors?.Blue}  />
-          </View>
+        <View style={{ flexDirection: "row" }}>
+          <TextLabel label={"BSCS-"} fontFamily={FontFamily?.Arsenal_Bold} fontWeight={"bold"} marginLeft={scale(12)} />
+          <TextLabel label={`${Semester}th Semester`} fontFamily={FontFamily?.Arsenal_Bold} fontWeight={"bold"} color={Colors?.Blue} />
         </View>
       </View>
+    </View>
   );
 }
 

@@ -5,19 +5,19 @@ import { moderateScale, scale, verticalScale } from 'react-native-size-matters'
 import Colors from '../../Utilitis/Colors'
 import { FontSizes } from '../../Constants/AppFonts'
 
-export default function SemesterConatiner() {
+export default function SemesterConatiner({semGPA,CGPA}) {
     return (
         <View style={styles?.container} >
             <View>
                 <TextLabel label={"Semester GPA"} fontWeight={"700"} marginTop={verticalScale(12)} />
                 <View style={styles?.SemesterConatiner}>
-                    <TextLabel label={"3.24/4"} color={Colors?.white} fontWeight={"bold"} alignSelf={"center"}  fontSize={FontSizes?.Large} />
+                    <TextLabel label={`${semGPA}/4`} color={Colors?.white} fontWeight={"bold"} alignSelf={"center"}  fontSize={FontSizes?.Large} />
                 </View>
             </View>
             <View style={{ marginRight: scale(12) }}>
                 <TextLabel label={"Overall GPA"} fontWeight={"700"} marginTop={verticalScale(12)} />
                 <View style={styles?.overAllConatiner}>
-                    <TextLabel label={"3.12/4"} color={Colors?.black} fontWeight={"bold"} alignSelf={"center"} fontSize={FontSizes?.Large} />
+                    <TextLabel label={`${CGPA}/4`} color={Colors?.black} fontWeight={"bold"} alignSelf={"center"} fontSize={FontSizes?.Large} />
                 </View>
             </View>
         </View>
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     },
     SemesterConatiner: {
         backgroundColor: Colors?.Blue,
-        paddingHorizontal: moderateScale(40),
+        paddingHorizontal: moderateScale(45),
         paddingVertical: verticalScale(20),
         borderRadius: 8,
         marginTop: 8,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     },
     overAllConatiner: {
         backgroundColor: Colors?.white,
-        paddingHorizontal: moderateScale(40),
+        paddingHorizontal: moderateScale(45),
         paddingVertical: verticalScale(20),
         borderLeftWidth:15,
         borderColor:Colors?.Blue,

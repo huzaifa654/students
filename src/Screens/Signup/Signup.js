@@ -63,7 +63,6 @@ export default function Signup() {
         axios.post(`${Url?.BaseUrl}/register`, UserData)
             .then(response => {
                 setLoad(false)
-                dispatch(setUserdetails(response?.data))
                 setMessage(response.data.message)
                 console.log('User registered successfully:', response.data.message);
                 setValue(true)

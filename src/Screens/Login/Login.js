@@ -16,11 +16,11 @@ import { setUserdetails } from '../../../Store/Reducer/UserReducer'
 import { Url } from '../../Constants/AppText'
 import { useForm } from 'react-hook-form'
 import ErrorMessage from '../../Components/ErrorMessage/ErrorMessage'
+import Loader from '../../Components/Loader/Loader'
 
 export default function Login() {
 
-
-
+    const [load, setLoad] = useState(false)
 
     const dispatch = useDispatch();
     const {
@@ -31,49 +31,33 @@ export default function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
     const [textSecurity, SetTextSecurity] = useState(true);
-    const handleLogin = async () => {
-        const UserData = {
 
-            seat_no: email,
-            passcode: password,
+
+    const handleLogin = async (email, password,) => {
+        setLoad && setLoad(true)
+        const UserData = {
+            email: email,
+            password: password,
         }
         console.log(UserData)
         axios.post(`${Url?.BaseUrl}/login`, UserData)
             .then(response => {
-
-                console.log('User login successfully:', response.data.message);
-                navigation.replace("Profile")
+                setLoad && setLoad(false)
+                console.log('response?.success', JSON?.stringify(response?.data?.success));
+                if (JSON?.stringify(response?.data?.success)) {
+                    dispatch(setUserdetails(response?.data))
+                    navigation.replace("Profile")
+                }
 
             })
-
             .catch(error => {
-                // console.error('Failed to login user:', error);
+                setLoad && setLoad(false)
+
                 Alert.alert('Error', 'Failed to login user');
             });
     };
 
-    const GetUserDeatils = () => {
-        const UserData = {
-            seat_no: email,
 
-        }
-        console.log(UserData)
-        axios.post(`${Url?.BaseUrl}/userDetails`, UserData)
-            .then(response => {
-                console.log('Api hit successfully:', response?.data);
-                dispatch(
-                    setUserdetails(
-                        response?.data
-                    ),
-                );
-                // Alert.alert('Success', 'User registered successfully');
-
-            })
-            .catch(error => {
-                // console.error('Failed to hit api:', error);
-                // Alert.alert('Error', 'Failed to register user');
-            });
-    };
     const {
         control,
         handleSubmit,
@@ -84,10 +68,9 @@ export default function Login() {
         mode: 'all',
     });
     const onSubmit = data => {
+        handleLogin(data?.email, data?.Password)
         console.log("data--", data)
-
     };
-    console.log("errors?.email", errors?.email)
 
     return (
         <View style={styles.container}>
@@ -172,6 +155,8 @@ export default function Login() {
                 </TouchableOpacity>
 
             </ScrollView>
+            {load && <Loader />}
+
         </View>
     )
 }
