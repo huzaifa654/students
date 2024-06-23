@@ -1,5 +1,5 @@
 import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
   Home,
   More,
@@ -14,8 +14,12 @@ import {
   ActiveBookingIcons,
   MoreIcons,
   SupportIcons,
+  SkillIcon,
 } from '../../../Constants/AppImages';
-import {verticalScale} from '../../../Utilitis/ResponsiveSizes';
+import { verticalScale } from '../../../Utilitis/ResponsiveSizes';
+import Profile from '../../../Screens/UsersScreens/ProfileScreens/Profile';
+import SkillCourseView from '../../../Components/SemesterCousesView/SkillCourseView';
+import SkillDeatil from '../../../Screens/Skills/SkillDeatil';
 
 const BottomNavigation = () => {
   const Tab = createBottomTabNavigator();
@@ -37,27 +41,28 @@ const BottomNavigation = () => {
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen
         name={'Home'}
-        component={Home}
+        component={Profile}
         options={{
-          tabBarIcon: ({focused}) => (
+          tabBarIcon: ({ focused }) => (
             <CustomTabs isFocus={focused} label={'HOME'} icon={HomeIcon} />
           ),
         }}
       />
-
       <Tab.Screen
-        name={'Bookings'}
-        component={Bookings}
+        name={'Skills'}
+        component={SkillDeatil}
         options={{
-          tabBarIcon: ({focused}) => (
+          tabBarIcon: ({ focused }) => (
             <CustomTabs
               isFocus={focused}
-              label={'BOOKINGS'}
-              icon={BookingsIcons}
+              label={'Skills'}
+              icon={SkillIcon}
             />
           ),
         }}
       />
+
+      {/* 
 
       <Tab.Screen
         name={'Trackings'}
@@ -95,7 +100,7 @@ const BottomNavigation = () => {
             <CustomTabs isFocus={focused} label={'MORE'} icon={MoreIcons} />
           ),
         }}
-      />
+      /> */}
     </Tab.Navigator>
   );
 };

@@ -18,6 +18,7 @@ import { store } from './Store/Store';
 import SemesterDetails from './src/Screens/SemesterDetai/SemesterDetails';
 import Assignment from './src/Screens/AssignmentsDetail/Assignment';
 import SkillDeatil from './src/Screens/Skills/SkillDeatil';
+import BottomNavigation from './src/Navigations/UserNavigation/BottomNavigation/BottomNavigation';
 
 const Stack = createNativeStackNavigator();
 
@@ -49,7 +50,7 @@ export default function App() {
             <Stack.Screen name="LoginScreen" component={Login} />
             <Stack.Screen name="Signup" component={Signup} />
 
-            <Stack.Screen name="Profile" component={Profile} />
+            <Stack.Screen name="Profile" component={BottomNavigation} />
             {/* <Stack.Screen name="Home" component={Home} /> */}
             {/* <Stack.Screen name="Profile" component={Profile} /> */}
             <Stack.Screen name="Semester" component={SemesterDetails} />

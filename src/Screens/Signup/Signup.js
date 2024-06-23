@@ -29,10 +29,7 @@ export default function Signup() {
     const [value, setValue] = useState('');
     const [load, setLoad] = useState(false)
     const [message, setMessage] = useState()
-    const dispatch = useDispatch();
-    const {
-        userDetails
-    } = useSelector(state => state.UserDetails);
+
 
     const citiesdata = [
 

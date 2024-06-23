@@ -20,45 +20,16 @@ export default function SkillDeatil() {
     const [skills, setSkills] = useState([])
 
 
-    const {
-        userDetails
-    } = useSelector(state => state.UserDetails);
-    console.log(userDetails)
-
+    const { userDetails } = useSelector(state => state.UserDetails);
+    const userinfo = userDetails?.UserResponse[0]
     console.log("userDetails", userDetails)
-    const IsFocus = useIsFocused()
-    const GetkillCourses = () => {
-        const UserData = {
-            seat_no: userDetails[0]?.seat_no,
 
-        }
-        console.log(UserData)
-        axios.post(`${Url?.BaseUrl}/GetSkills`, UserData)
-            .then(response => {
-                console.log('Skills========>>>>>>', response?.data);
-                setSkills(response?.data)
-
-            })
-            .catch(error => {
-                // console.error('Failed to hit api:', error);
-                // Alert.alert('Error', 'Failed to register user');
-            });
-    };
-    useEffect(() => {
-
-        GetkillCourses()
-
-    }, [IsFocus])
-    const renderItem = ({ item }) => (
-        <SkillCourseView item={item} date={new Date(item?.announced_date)} due={new Date(item?.due_date)} />
-    );
     return (
         <View style={styles.container}>
             <Header label={"Skill Courses"} />
             <ScrollView>
-
-                <TextLabel label={`Hey ${userDetails[0]?.last_name} your Skill Courses are here !!`} alignSelf={"center"} marginTop={12} fontFamily={FontFamily.Arsenal_Bold} fontWeight={"bold"} width={"95%"} textAlign={"center"} fontSize={FontSizes.LargeMedium} />
-                <SkillCourseView skill={skills[0]?.c_name} />
+                <TextLabel label={`Hey ${userinfo?.lastName} your Skill Courses are here !!`} alignSelf={"center"} marginTop={12} fontFamily={FontFamily.Arsenal_Bold} fontWeight={"bold"} width={"95%"} textAlign={"center"} fontSize={FontSizes.LargeMedium} />
+                <SkillCourseView skill={userinfo?.skilledCourses} />
                 <Lottie style={styles.lottie}
                     source={require('../../Animation/ss.json')}
                     autoPlay

@@ -11,6 +11,8 @@ const EmailIcon = require('../Assets/email.png');
 const LockIcon = require('../Assets/lock.png');
 const Arrow = require('../Assets/arrow.png');
 const back = require('../Assets/back.png');
+const HomeIcon = require('../Assets/home.png');
+const SkillIcon = require('../Assets/skill.png');
 
 
 const EyeIcon = require('../Assets/eye.png');
@@ -29,6 +31,8 @@ const ArrowDownIcon = require('../Assets/down.png');
 
 // Sir.jpg
 export {
+  SkillIcon,
+  HomeIcon,
   back,
   ArrowDownIcon,
   semester,

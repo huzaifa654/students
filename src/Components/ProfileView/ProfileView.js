@@ -26,7 +26,7 @@ export default function ProfileView({ name, id, Semester }) {
   return (
     <View style={styles?.row}>
       <View style={styles?.imageContainer}>
-        <Image source={{ uri: "https://img.freepik.com/premium-photo/young-girl-student-smiling-against-university_101969-611.jpg" }} resizeMode='contain' style={styles?.image} />
+        <Image source={require("../../Assets/stu.png")} resizeMode='contain' style={styles?.image} />
       </View>
       <View style={{ alignSelf: "center" }}>
         <TextLabel label={name} fontFamily={FontFamily?.Arsenal_Bold} fontWeight={"bold"} marginLeft={scale(12)} />

@@ -17,10 +17,14 @@ import { Url } from '../../Constants/AppText'
 import { useForm } from 'react-hook-form'
 import ErrorMessage from '../../Components/ErrorMessage/ErrorMessage'
 import Loader from '../../Components/Loader/Loader'
+import CustomModal from '../../Components/Modals/CustomModal'
+import MessageModal from '../../Components/MessageModal/MessageModal'
 
 export default function Login() {
 
     const [load, setLoad] = useState(false)
+    const [value, setValue] = useState('');
+    const [message, setMessage] = useState()
 
     const dispatch = useDispatch();
     const {
@@ -43,17 +47,21 @@ export default function Login() {
         axios.post(`${Url?.BaseUrl}/login`, UserData)
             .then(response => {
                 setLoad && setLoad(false)
-                console.log('response?.success', JSON?.stringify(response?.data?.success));
-                if (JSON?.stringify(response?.data?.success)) {
+                console.log('response?.success', response?.data?.success);
+
+                if (response?.data?.success) {
                     dispatch(setUserdetails(response?.data))
                     navigation.replace("Profile")
+                } else {
+                    setMessage(response?.data?.msg)
+                    setValue(true)
                 }
 
             })
             .catch(error => {
                 setLoad && setLoad(false)
 
-                Alert.alert('Error', 'Failed to login user');
+                // Alert.alert('Error', 'Failed to login user');
             });
     };
 
@@ -153,7 +161,9 @@ export default function Login() {
 
                     />
                 </TouchableOpacity>
-
+                <CustomModal setValue={setValue} value={value}>
+                    <MessageModal setvalue={() => { setValue(false) }} text={message} />
+                </CustomModal>
             </ScrollView>
             {load && <Loader />}
 

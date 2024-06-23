@@ -206,7 +206,7 @@ export default function Profile() {
   const renderItem = (item) => {
     console.log("item---", JSON.stringify(item?.item))
     return (
-      <SemesterCoucesContainer item={item?.item} />
+      <SemesterCoucesContainer item={item?.item} index={item?.index} />
 
     )
   }
@@ -219,12 +219,13 @@ export default function Profile() {
       <ProfileView name={`${userInfo?.firstName} ${userInfo?.lastName}`} id={userInfo?.seatNo} Semester={userInfo?.semester} />
       <SemesterConatiner semGPA={userInfo?.semesterGPA} CGPA={userInfo?.overAllGPA} />
       <TextLabel label={"Semester Courses"} fontWeight={"700"} marginLeft={scale(15)} marginTop={verticalScale(15)} />
-      <FlatList
-        data={COURSES}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        
-      />
+      {courses[0]?.Course1 == undefined ?
+        <></> :
+        <FlatList
+          data={COURSES}
+          renderItem={renderItem}
+          style={{ marginTop: verticalScale(8) }}
+        />}
 
       {load && <Loader />}
 

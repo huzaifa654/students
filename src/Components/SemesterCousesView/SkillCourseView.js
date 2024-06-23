@@ -7,6 +7,7 @@ import { moderateScale, scale, verticalScale } from 'react-native-size-matters'
 import TextLabel from '../TextLabel/TextLable'
 import { FontSizes } from '../../Constants/AppFonts'
 import Lottie from 'lottie-react-native';
+import Colors from '../../Utilitis/Colors'
 
 
 export default function SkillCourseView({ skill }) {
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
     Skillcontaner: {
         flexDirection: "row",
         justifyContent: "space-between",
-        backgroundColor: '#24354f',
+        backgroundColor: Colors?.Blue,
         padding: moderateScale(15),
         marginHorizontal: scale(12),
         marginTop: verticalScale(22),
