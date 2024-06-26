@@ -328,7 +328,7 @@ export default function Signup() {
                 />
 
                 <CustomModal setValue={setValue} value={value}>
-                    <SuccessModal setvalue={() => { setValue(false) }} text={message} />
+                    <SuccessModal setvalue={() => { setValue(false) }} text={message} onPress={()=>{ navigation.goBack(); setValue(false) }} />
                 </CustomModal>
             </ScrollView>
             {load && <Loader />}

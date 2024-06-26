@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 const Url = {
-    BaseUrl: 'http://192.168.0.136:3000/api',
+    BaseUrl: 'http://192.168.100.25:3000/api',
 
 
 }

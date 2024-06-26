@@ -7,13 +7,13 @@ import { FontFamily } from '../../Constants/AppFonts'
 import CustomButton from '../CustomButton'
 import { useNavigation } from '@react-navigation/native'
 
-export default function SuccessModal({ text, setvalue }) {
+export default function SuccessModal({ text, setvalue,onPress }) {
   const navigation = useNavigation()
   return (
     <View style={styles?.container}>
       <Image source={require("../../Assets/check.png")} resizeMode='contain' style={styles?.img} />
       <TextLabel label={text} textAlign={"center"} fontFamily={FontFamily?.Arsenal_Bold} fontWeight={"bold"} marginTop={12} marginBottom={12} />
-      <CustomButton text={"Ok"} bgColor={Colors?.AppBlue1} height={45} marginTop={15} fgColor={Colors?.white} onPress={() => { navigation.goBack(); setvalue(false) }} />
+      <CustomButton text={"Ok"} bgColor={Colors?.AppBlue1} height={45} marginTop={15} fgColor={Colors?.white} onPress={onPress} />
     </View>
   )
 }

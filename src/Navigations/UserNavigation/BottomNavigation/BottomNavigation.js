@@ -4,11 +4,15 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import CustomTabs from './CustomTabs';
 import {
   HomeIcon,
+  KuLogo,
   SkillIcon,
+  semester,
 } from '../../../Constants/AppImages';
 import { verticalScale } from '../../../Utilitis/ResponsiveSizes';
 import Profile from '../../../Screens/UsersScreens/ProfileScreens/Profile';
 import SkillDeatil from '../../../Screens/Skills/SkillDeatil';
+import Report from '../../../Screens/UsersScreens/Report/Report';
+import TimeTable from '../../../Screens/UsersScreens/TimeTable/TimeTable';
 
 const BottomNavigation = () => {
   const Tab = createBottomTabNavigator();
@@ -46,6 +50,32 @@ const BottomNavigation = () => {
               isFocus={focused}
               label={'Skills'}
               icon={SkillIcon}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={'Report'}
+        component={Report}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <CustomTabs
+              isFocus={focused}
+              label={'Report'}
+              icon={KuLogo}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={'TimeTable'}
+        component={TimeTable}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <CustomTabs
+              isFocus={focused}
+              label={'Time Table'}
+              icon={semester}
             />
           ),
         }}
