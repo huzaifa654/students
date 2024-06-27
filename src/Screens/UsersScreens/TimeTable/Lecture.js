@@ -5,14 +5,14 @@ import { scale, verticalScale } from 'react-native-size-matters'
 import Colors from '../../../Utilitis/Colors'
 import { FontSizes } from '../../../Constants/AppFonts'
 
-export default function Lecture({item}) {
-    console.log("item--",item)
+export default function Lecture({ item }) {
+    console.log("item--", item)
     return (
-        <View style={{marginBottom:verticalScale(12)}}>
+        <View style={{ marginBottom: verticalScale(12) }}>
             <TextLabel label={item?.Time} marginLeft={scale(20)} marginTop={verticalScale(20)} fontWeight={"bold"} />
             <View style={styles?.courseContainer}>
                 <TextLabel label={item?.Code} fontWeight={"bold"} fontSize={FontSizes?.Small} />
-                <TextLabel label={item?.name} color={Colors?.Blue} marginTop={verticalScale(5)} fontWeight={"bold"} fontSize={FontSizes?.Small} />
+                <TextLabel label={item?.Name} color={Colors?.Blue} marginTop={verticalScale(5)} fontWeight={"bold"} fontSize={FontSizes?.Small} />
             </View>
         </View>
     )
